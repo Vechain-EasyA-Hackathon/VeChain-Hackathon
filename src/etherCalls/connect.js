@@ -6,7 +6,7 @@ export async function connect(){
     customHttpProvider.getBlockNumber().then((result) => {
         console.log("Current block number: " + result);
     });
-    
+    console.log("Connected to Frontend");
     const seller = new Contract(tokenAddress, Seller_Product.abi, customHttpProvider);
     console.log(seller);
 }
