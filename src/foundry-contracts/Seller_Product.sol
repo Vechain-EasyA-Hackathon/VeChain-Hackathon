@@ -27,6 +27,8 @@ contract Seller_Product {
         uint256 quantity;
         string description;
         string image;
+        string data;
+        uint256 carbonFootprint;
         string sellerName;
     }
 
@@ -56,6 +58,8 @@ contract Seller_Product {
         uint256 _quantity,
         string memory _description,
         string memory _image,
+        string calldata _data,
+        uint256 _carbonFootprint,
         string calldata _sellerName
     ) public onlyValidSeller(msg.sender, _sellerName) {
         products[productCount++][_sellerName] = Product(
@@ -66,6 +70,8 @@ contract Seller_Product {
             _quantity,
             _description,
             _image,
+            _data,
+            _carbonFootprint,
             _sellerName
         );
     }
