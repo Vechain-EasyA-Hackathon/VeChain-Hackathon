@@ -7,7 +7,11 @@
     "dev": "vite",
     "build": "vite build",
     "lint": "eslint . --ext js,jsx --report-unused-disable-directives --max-warnings 0",
-    "preview": "vite preview"
+    "preview": "vite preview",
+    "foundry:anvil": "anvil &",
+    "foundry:build": "forge build",
+    "foundry:test": "forge test",
+    "foundry:deploy:Seller_Product": "forge script script/Seller_Product.s.sol:DeploySeller_ProductScript --rpc-url http://127.0.0.1:8545/"
   },
   "dependencies": {
     "@emotion/react": "^11.11.1",
