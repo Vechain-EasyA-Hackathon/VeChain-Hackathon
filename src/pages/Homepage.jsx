@@ -16,34 +16,6 @@ import Metamask from '../MetaMaskFunctions/MetaMask';
 
 function Home() {
 
-  //MetaMask login stuff
-  const [account, setAccount] = React.useState(null);
-  const { sdk, connected, connecting, provider, chainId } = useSDK();
-
-  const connect = async () => {
-    try {
-      console.log(`connecting...`);
-      const accounts = await sdk?.connect();
-      setAccount(accounts?.[0]);
-      console.log(`connected:`, accounts?.[0]);
-    } catch(err) {
-      console.warn(`failed to connect..`, err);
-    }
-  };
-
-  const disconnect = async () => {
-    try {
-      console.log(`disconnecting...`);
-      await sdk?.disconnect();
-      setAccount(null);
-      console.log(`disconnected`);
-    } catch(err) {
-      console.warn(`failed to disconnect..`, err);
-    }
-  }
-
-
-
   return (
     <div>
 
@@ -58,6 +30,8 @@ function Home() {
           
         </div>
       </div>
+
+      
 
     
     
