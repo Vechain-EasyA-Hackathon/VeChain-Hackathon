@@ -23,6 +23,17 @@ function Home() {
     }
   };
 
+  const disconnect = async () => {
+    try {
+      console.log(`disconnecting...`);
+      await sdk?.disconnect();
+      setAccount(null);
+      console.log(`disconnected`);
+    } catch(err) {
+      console.warn(`failed to disconnect..`, err);
+    }
+  }
+
 
 
   return (
