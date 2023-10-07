@@ -1,17 +1,28 @@
-// import { useState } from 'react'
+import { useState } from 'react'
+import { BrowserRouter as Router, Route, Routes, useNavigate, useLocation } from 'react-router-dom';
 
-import './App.css'
+//PAGE IMPORTS
+import Homepage from './pages/Homepage';
+import Mint from './pages/Seller/Mint';
+import SellerDashboard from './pages/Seller/SellerDashboard';
+
+
 
 function App() {
 
 
   return (
-    <div>
+    <div className='flex flex-col flex-1'>
+      <Router>
+        <Routes>
+            <Route path="/" element={<Homepage />} />
+            <Route path="seller/mint" element={<Mint />} />
+            <Route path="seller/dashboard" element={<SellerDashboard />} />
 
-      <h1 className="text-3xl font-bold underline">
-        Hello world!
-      </h1>
-
+            
+          </Routes>
+      </Router>
+        
     </div>
       
   )
