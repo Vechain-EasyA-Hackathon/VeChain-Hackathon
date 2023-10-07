@@ -12,7 +12,6 @@ import { ethers } from 'ethers';
 //Component imports
 import Metamask from '../MetaMaskFunctions/MetaMask';
 
-const provider = new ethers.providers.JsonRpcProvider('http://localhost:5173');
 
 
 function Home() {
