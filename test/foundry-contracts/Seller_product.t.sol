@@ -10,17 +10,6 @@ contract Seller_ProductTest is Test {
         address addr;
     }
 
-    struct Product {
-        uint256 id;
-        string name;
-        string date;
-        uint256 purchasedQuantity;
-        uint256 quantity;
-        string description;
-        string image;
-        string sellerName;
-    }
-
     Seller_Product public seller_product;
 
     address public owner;
@@ -51,6 +40,8 @@ contract Seller_ProductTest is Test {
             10,
             "NEED I DESCRIBE THIS",
             "LOL",
+            "SOME DATA",
+            500,
             seller1.name
         );
 
