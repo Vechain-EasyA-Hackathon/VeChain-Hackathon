@@ -6,6 +6,15 @@ import Button from '@mui/material/Button';
 //METAMASK
 import { useSDK } from '@metamask/sdk-react';
 
+//ethers
+import { ethers } from 'ethers';
+
+//Component imports
+import Metamask from '../MetaMaskFunctions/MetaMask';
+
+const provider = new ethers.providers.JsonRpcProvider('http://localhost:5173');
+
+
 function Home() {
 
   //MetaMask login stuff
@@ -45,17 +54,12 @@ function Home() {
           <h1 className="text-2xl font-bold ml-2 text-white">Green Clothing Company</h1>
         </div>
         <div className="flex items-center">
-          <Button variant="contained" onClick={connect}>{connected && (
-        <div>
-          <>
-            {chainId && `Connected chain: ${chainId}`}
-            <p></p>
-            {account && `Connected account: ${account}`}
-          </>
-        </div>
-      )}</Button>
+          
+          <Metamask />
+          
         </div>
       </div>
+
     
     
       <Button variant="contained">Hello world</Button>
