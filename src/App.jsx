@@ -12,7 +12,7 @@ function App() {
 
 
   return (
-    <div className='flex flex-col flex-1'>
+    <div>
       <Router>
         <Routes>
             <Route path="/" element={<Homepage />} />
