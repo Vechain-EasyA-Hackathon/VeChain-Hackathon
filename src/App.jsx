@@ -6,6 +6,7 @@ import Homepage from './pages/Homepage';
 import Mint from './pages/Seller/Mint';
 import SellerDashboard from './pages/Seller/SellerDashboard';
 import Product from './pages/Product';
+import ProductSample from './pages/ProductSample';
 
 
 
@@ -23,6 +24,9 @@ function App() {
             {/* Product, dependent on seller/company, then id given for nft should take in parameter of company and nftid */}
 
             <Route path="product/:company/:nftid" element={<Product />} />
+
+            {/* Product Sample */}
+            <Route path="product/nike/82" element={<ProductSample />} />
 
           </Routes>
       </Router>

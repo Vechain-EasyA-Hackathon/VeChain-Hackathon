@@ -24,9 +24,6 @@ import LouisV from '../assets/LouisV.png';
 import Featured from '../assets/Featured.jpeg';
 
 
-// import { addSeller } from '../etherCalls/addSeller';
-
-
 function Home() {
   const [userAddress, setUserAddress] = useState(null);
 
