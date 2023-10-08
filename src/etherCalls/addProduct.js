@@ -16,7 +16,7 @@ export async function addProduct(
       await window.ethereum.request({ method: 'eth_requestAccounts' });
   
       // Initialize ethers provider
-      const provider = new ethers.providers.Web3Provider(window.ethereum);
+      const provider = new ethers.BrowserProvider(window.ethereum);
   
       // Load the contract
       const sellerProductContract = new ethers.Contract(
