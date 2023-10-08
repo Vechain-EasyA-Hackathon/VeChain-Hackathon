@@ -1,6 +1,7 @@
 import React, { useState, useEffect, useContext } from 'react';
 import { ethers } from "ethers";
 import Button from '@mui/material/Button';
+import { useSDK } from '@metamask/sdk-react';
 
 const Metamask = () => {
   
@@ -19,7 +20,6 @@ const Metamask = () => {
     localStorage.setItem('metamaskAddress', addrFormatted);
   }
 
-  import { useSDK } from '@metamask/sdk-react';
 
 
   useEffect(() => {

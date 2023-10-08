@@ -6,13 +6,24 @@ import { addProduct } from '../../etherCalls/addProduct';
 import { ethers, utils } from 'ethers';
 
 const MintPage = () => {
-  const parameters = ['Name', 'Product ID', 'Carbon Footprint', 'Quantity', 'Image', 'Data', 'Seller Name'];
+  const parameters = ['Name', 'Product ID', 'Date', 'Description', 'Image', 'Carbon Footprint', 'Quantity', 'Image', 'Seller Name',
+  'Manufacturer Name', 'Manufacturer ID', 'Manufacturer Location', 'Manufacturer Description', 'Manufacturer Image'
+  ];
   const navigate = useNavigate();
   const [productData, setProductData] = useState({});
+  
 
   const handleMint = () => {
     // Replace these with the actual values you want to send
-    const id = 10;  // Example product ID
+    const id = 10;
+    const date = "2021-10-10";
+    const purchaseQuantity = 0;
+    const Quantity = 11;
+    const description = "Product Description";
+    const image = "Product Image";
+    const data = "Product Data";
+    const carbonFootprint = 0;
+    // Example product ID
     const name = "Product Name";
     const prodString = "12";
     // const productDataBytes = utils.parseEther(prodString.toString());
@@ -24,11 +35,27 @@ const MintPage = () => {
 const dataArray = [id, name, date, purchaseQuantity, Quantity, description, image, data, carbonFootprint, sellerName];
 
 // Define the types for each element in the array
-const types = ['uint256', 'string', 'string', 'uint256', 'uint256', 'string', 'string', 'string', 'uint256', 'uint256', 'string'];
-const productDataBytes = 
+const types = ['uint256', 'string', 'string', 'uint256', 'uint256', 'string', 'string', 'string', 'uint256', 'string'];
+const encodedArray = ethers.utils.defaultAbiCoder.encode(types, dataArray);
+const manData = [["Joe", "Joe"],
+  ["Poop", "Poop"],
+  [1, 10],
+  ["Canada", "Canada"],
+  ["stuff", "stuff"],
+  ];
+console.log(typeof(["",""]));
+const typesManData = 
+  ['string[]',
+  'string[]',
+  'uint256[]',
+  'string[]',
+  'string[]'];
+
     console.log("accepted");
+    const manEncode = ethers.utils.defaultAbiCoder.encode(typesManData, manData);
+    console.log(manEncode);
     // Call the addProduct function with the appropriate arguments
-    addProduct(id, name, productDataBytes, manufacturerDataBytes, sellerName);
+    addProduct(id, name, encodedArray, manEncode, sellerName);
   };
 
   const handleClick = () => {
