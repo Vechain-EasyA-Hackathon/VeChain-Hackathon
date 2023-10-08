@@ -7,6 +7,7 @@ import Mint from './pages/Seller/Mint';
 import SellerDashboard from './pages/Seller/SellerDashboard';
 import Product from './pages/Product';
 import ProductSample from './pages/ProductSample';
+import MyCollection from './pages/Consumer/MyCollection';
 
 
 
