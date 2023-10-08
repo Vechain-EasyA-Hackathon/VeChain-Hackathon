@@ -3,7 +3,7 @@ import { useNavigate } from 'react-router-dom';
 import TextField from '@mui/material/TextField';
 import Button from '@mui/material/Button';
 import { addProduct } from '../../etherCalls/addProduct';
-import { ethers, utils } from 'ethers';
+import { ethers } from 'ethers';
 
 const MintPage = () => {
   const parameters = [
@@ -56,7 +56,7 @@ const MintPage = () => {
         'string'
       ];
       console.log(typeof(types[1]));
-      const encodedArray = ethers.utils.defaultAbiCoder.encode(types, dataArray);
+      const encodedArray = ethers.defaultAbiCoder.encode(types, dataArray);
       //console.log(ethers.utils.defaultAbiCoder.decode(encodedArray));
       const manData = [
         productData['Seller Name'],
@@ -72,7 +72,7 @@ const MintPage = () => {
         'string',
         'string',
       ];
-      const manEncode = ethers.utils.defaultAbiCoder.encode(typesManData, manData);
+      const manEncode = ethers.defaultAbiCoder.encode(typesManData, manData);
     
       addProduct(
         dataArray[0], // Product ID
