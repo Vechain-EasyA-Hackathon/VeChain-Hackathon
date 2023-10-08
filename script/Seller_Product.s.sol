@@ -11,7 +11,7 @@ contract DeploySeller_ProductScript is Script {
     uint256 deployerPrivateKey;
 
     function setUp() public {
-        deployerPrivateKey = vm.envUint("PRIVATE_KEY");
+        deployerPrivateKey = vm.envUint("VITE_PRIVATE_KEY");
     }
 
     function run() public {
