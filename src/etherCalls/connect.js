@@ -1,4 +1,4 @@
-import { Contract, ethers } from 'ethers';
+import { ethers } from 'ethers';
 import { abi } from '../../out/Seller_Product.sol/Seller_Product.json';
 
 const SELLER_PRODUCT_ADDRESS = import.meta.env.VITE_SELLER_PRODUCT_ADDRESS;
@@ -14,8 +14,9 @@ export async function connect() {
         const currentBlockNumber = await customHttpProvider.getBlockNumber();
         console.log("Current block number: " + currentBlockNumber);
 
-        const seller = new Contract(SELLER_PRODUCT_ADDRESS, abi, customHttpProvider);
-
+        const seller = new ethers.Contract(SELLER_PRODUCT_ADDRESS, abi, customHttpProvider);
+        const count = await seller.owner();
+        console.log("Product Count: " + count.toString());
         console.log("Connected to Frontend");
         return seller;
     } catch (error) {

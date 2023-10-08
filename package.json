@@ -11,7 +11,7 @@
     "foundry:anvil": "anvil &",
     "foundry:build": "forge build",
     "foundry:test": "forge test",
-    "foundry:deploy:Seller_Product": "forge script script/Seller_Product.s.sol:DeploySeller_ProductScript --rpc-url http://127.0.0.1:8545/"
+    "foundry:deploy:Seller_Product": "forge script script/Seller_Product.s.sol:DeploySeller_ProductScript --rpc-url http://127.0.0.1:8545 --broadcast"
   },
   "dependencies": {
     "@emotion/react": "^11.11.1",
