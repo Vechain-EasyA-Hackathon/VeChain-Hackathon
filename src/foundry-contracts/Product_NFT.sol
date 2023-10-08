@@ -48,8 +48,6 @@ contract NFT is ERC721 {
         for (uint256 i = currentTokenId; i < TOTAL_SUPPLY; ++i) {
             _safeMint(owner, i);
         }
-
-        currentTokenId = TOTAL_SUPPLY;
     }
 
     function tokenURI(
@@ -66,5 +64,9 @@ contract NFT is ERC721 {
 
     function returnMintCount() public view returns (uint256) {
         return currentTokenId;
+    }
+
+    function transferToClient(address _client) public onlyOwner {
+        safeTransferFrom(msg.sender, _client, currentTokenId++);
     }
 }

@@ -3,7 +3,7 @@ pragma solidity ^0.8.13;
 
 import "solmate/tokens/ERC721.sol";
 import "openzeppelin-contracts/contracts/utils/Strings.sol";
-import {NFT} from "./Product_NFT_Mint.sol";
+import {NFT} from "./Product_NFT.sol";
 
 contract Seller_Product {
     modifier onlyValidSeller(
@@ -47,7 +47,7 @@ contract Seller_Product {
     struct Product {
         uint256 id;
         string name;
-        bytes productDecode;
+        bytes productData;
         bytes manufacturerData;
         string sellerName;
     }

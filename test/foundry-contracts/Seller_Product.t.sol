@@ -3,10 +3,10 @@ pragma solidity ^0.8.13;
 
 import {Test, console2} from "forge-std/Test.sol";
 import {Seller_Product} from "@contracts/Seller_Product.sol";
-import {NFT} from "@contracts/Product_NFT_Mint.sol";
+import {NFT} from "@contracts/Product_NFT.sol";
 
 contract Seller_ProductTest is Test {
-    struct seller {
+    struct User {
         string name;
         address addr;
     }
@@ -14,7 +14,8 @@ contract Seller_ProductTest is Test {
     Seller_Product public seller_product;
 
     address public owner;
-    seller seller1 = seller("UMBC", makeAddr("UMBC"));
+    User client1 = User("Bob", makeAddr("Bob"));
+    User seller1 = User("UMBC", makeAddr("UMBC"));
 
     function setUp() public {
         seller_product = new Seller_Product();
@@ -59,7 +60,7 @@ contract Seller_ProductTest is Test {
                 "DEEZ NUTS",
                 "2021-01-01",
                 10,
-                500,
+                10,
                 "NEED I DESCRIBE THIS",
                 "LOL",
                 "SOME DATA",
@@ -102,9 +103,18 @@ contract Seller_ProductTest is Test {
         test_AddProduct();
         vm.prank(seller1.addr);
         NFT nftContract = NFT(seller_product.NFTs(seller1.addr, 1));
+        uint256 nftMinted = nftContract.TOTAL_SUPPLY();
 
-        uint256 nftMinted = nftContract.returnMintCount();
+        assertEq(nftMinted, 10);
 
-        assertEq(nftMinted, 500);
+        address original_owner = nftContract.ownerOf(0);
+
+        vm.prank(seller1.addr);
+        nftContract.transferToClient(client1.addr);
+
+        address new_owner = nftContract.ownerOf(0);
+
+        assertNotEq(original_owner, new_owner);
+        assertEq(original_owner, seller1.addr);
     }
 }
