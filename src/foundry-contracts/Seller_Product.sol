@@ -48,7 +48,7 @@ contract Seller_Product {
         uint256 id;
         string name;
         bytes productData;
-        bytes[] manufacturerData;
+        bytes manufacturerData;
         string sellerName;
     }
 
