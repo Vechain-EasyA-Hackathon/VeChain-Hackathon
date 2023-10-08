@@ -24,11 +24,11 @@ contract Seller_Product {
     }
 
     struct ManufacturerData {
-        string[] manufacturerName;
-        string[] sourceMaterials;
-        uint256[] carbonFootprint;
-        string[] sourceLocation;
-        string[] miscData;
+        string manufacturerName;
+        string sourceMaterials;
+        uint256 carbonFootprint;
+        string sourceLocation;
+        string miscData;
     }
 
     struct ProductData {
@@ -48,7 +48,7 @@ contract Seller_Product {
         uint256 id;
         string name;
         bytes productData;
-        bytes manufacturerData;
+        bytes[] manufacturerData;
         string sellerName;
     }
 

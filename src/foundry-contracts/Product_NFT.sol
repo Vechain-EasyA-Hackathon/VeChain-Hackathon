@@ -12,6 +12,14 @@ error WithdrawTransfer();
 contract NFT is ERC721 {
     using Strings for uint256;
 
+    modifier onlyNFTOwner(uint256 _tokenId) {
+        require(
+            msg.sender == ownerOf(_tokenId),
+            "Only NFT owner can call this function"
+        );
+        _;
+    }
+
     modifier onlyOwner() {
         require(msg.sender == owner, "Only owner can call this function");
         _;
@@ -68,5 +76,12 @@ contract NFT is ERC721 {
 
     function transferToClient(address _client) public onlyOwner {
         safeTransferFrom(msg.sender, _client, currentTokenId++);
+    }
+
+    function transferToAnyone(
+        address _to,
+        uint256 _tokenId
+    ) public onlyNFTOwner(_tokenId) {
+        safeTransferFrom(msg.sender, _to, _tokenId);
     }
 }
