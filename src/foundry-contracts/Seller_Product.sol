@@ -34,14 +34,11 @@ contract Seller_Product {
     struct ProductData {
         uint256 id;
         string name;
-        string date;
-        uint256 purchasedQuantity;
         uint256 quantity;
         string description;
         string image;
         string data;
         uint256 carbonFootprint;
-        string sellerName;
     }
 
     struct Product {
@@ -49,6 +46,7 @@ contract Seller_Product {
         string name;
         bytes productData;
         bytes[] manufacturerData;
+        string supplierName;
         string sellerName;
     }
 
@@ -64,7 +62,7 @@ contract Seller_Product {
         uint256 id,
         string name,
         bytes productDecode,
-        bytes manufacturerData,
+        bytes[] manufacturerData,
         string sellerName
     );
 
@@ -77,6 +75,8 @@ contract Seller_Product {
         string baseURI,
         uint256 totalSupply
     );
+
+    event Test(string location);
 
     constructor() {
         owner = msg.sender;
@@ -94,14 +94,17 @@ contract Seller_Product {
         uint256 _id,
         string calldata _name,
         bytes calldata _productDataBytes,
-        bytes calldata _manufacturerDataBytes,
+        bytes[] calldata _manufacturerDataBytes,
+        string calldata _supplierName,
         string calldata _sellerName
     ) public onlyValidSeller(msg.sender, _sellerName) {
+        emit Test("TEST");
         products[_sellerName][productCount++] = Product(
             _id,
             _name,
             _productDataBytes,
             _manufacturerDataBytes,
+            _supplierName,
             _sellerName
         );
 
