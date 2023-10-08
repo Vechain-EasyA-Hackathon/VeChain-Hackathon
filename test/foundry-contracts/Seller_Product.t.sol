@@ -33,20 +33,55 @@ contract Seller_ProductTest is Test {
     function test_AddProduct() public {
         test_AddSeller();
         vm.prank(seller1.addr);
-        seller_product.addProduct(
+
+        string[] memory manufacturerName = new string[](3);
+        manufacturerName[0] = "A";
+        manufacturerName[1] = "B";
+
+        string[] memory sourceMaterials = new string[](3);
+        manufacturerName[0] = "Leather";
+        manufacturerName[1] = "Cotton";
+
+        uint256[] memory carbonFootprint = new uint256[](3);
+        carbonFootprint[0] = 10;
+        carbonFootprint[1] = 11;
+        string[] memory sourceLocation = new string[](3);
+        sourceLocation[0] = "China";
+        sourceLocation[1] = "Taiwan";
+
+        string[] memory manufacturerData = new string[](3);
+        manufacturerData[0] = "great";
+        manufacturerData[1] = "nice";
+
+        bytes memory productDecodeBytes = abi.encode(
             1,
             "DEEZ NUTS",
             "2021-01-01",
             10,
+            500,
             "NEED I DESCRIBE THIS",
             "LOL",
             "SOME DATA",
-            500,
             seller1.name
         );
 
-        uint256 prodCount = seller_product.productCount();
-        assertEq(prodCount, 1);
+        bytes memory manufacturerDataBytes = abi.encode(
+            manufacturerName,
+            sourceMaterials,
+            carbonFootprint,
+            sourceLocation,
+            manufacturerData
+        );
+
+        seller_product.addProduct(
+            1,
+            "DEEZ NUTS",
+            productDecodeBytes,
+            manufacturerDataBytes,
+            seller1.name
+        );
+
+        assertEq(seller_product.productCount(), 1);
 
         Seller_Product.Product memory prod = seller_product.getProductName(
             0,

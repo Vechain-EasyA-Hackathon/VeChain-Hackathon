@@ -1,12 +1,9 @@
-import dotenv from 'dotenv';
-import { Contract } from 'ethers';
-import { Seller_Product } from '../../out/Seller_Product.sol/Seller_Product.json';
-dotenv.config();
+import { Contract, ethers } from 'ethers';
 
-const { SELLER_PRODUCT_ADDRESS } = process.env;
+const SELLER_PRODUCT_ADDRESS = import.meta.env.VITE_SELLER_PRODUCT_ADDRESS;
 
-// const [contract, setContract] = useState();
-export async function connect(){
+export async function connect() {
+    window.console.log("Connected to Frontend");
     const url = "http://localhost:8545";
     var customHttpProvider = new ethers.JsonRpcProvider(url);
     window.console.log("Connected to Backend");

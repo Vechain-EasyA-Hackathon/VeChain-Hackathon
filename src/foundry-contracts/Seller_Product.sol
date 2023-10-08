@@ -18,8 +18,14 @@ contract Seller_Product {
         require(msg.sender == owner, "Only owner can call this function");
         _;
     }
-
-    struct Product {
+    struct ManufacturerData {
+        string[] manufacturerName;
+        string[] sourceMaterials;
+        uint256[] carbonFootprint;
+        string[] sourceLocation;
+        string[] miscData;
+    }
+    struct ProductData {
         uint256 id;
         string name;
         string date;
@@ -29,6 +35,15 @@ contract Seller_Product {
         string image;
         string data;
         uint256 carbonFootprint;
+        ManufacturerData manufacturerData;
+        string sellerName;
+    }
+
+    struct Product {
+        uint256 id;
+        string name;
+        bytes productDecode;
+        bytes manufacturerData;
         string sellerName;
     }
 
@@ -53,25 +68,16 @@ contract Seller_Product {
 
     function addProduct(
         uint256 _id,
-        string memory _name,
-        string memory _date,
-        uint256 _quantity,
-        string memory _description,
-        string memory _image,
-        string calldata _data,
-        uint256 _carbonFootprint,
+        string calldata _name,
+        bytes calldata _productDataBytes,
+        bytes calldata _manufacturerDataBytes,
         string calldata _sellerName
     ) public onlyValidSeller(msg.sender, _sellerName) {
         products[productCount++][_sellerName] = Product(
             _id,
             _name,
-            _date,
-            0,
-            _quantity,
-            _description,
-            _image,
-            _data,
-            _carbonFootprint,
+            _productDataBytes,
+            _manufacturerDataBytes,
             _sellerName
         );
     }

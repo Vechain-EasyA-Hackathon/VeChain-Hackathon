@@ -12,6 +12,8 @@ import { ethers } from 'ethers';
 //Component imports
 import Metamask from '../MetaMaskFunctions/MetaMask';
 
+import { connect } from '../etherCalls/connect';
+
 
 
 function Home() {
@@ -26,8 +28,8 @@ function Home() {
         </div>
         <div className="flex items-center">
           
-          <Metamask />
-          
+          <Button variant="contained" onClick={connect}>Connect</Button>
+
         </div>
       </div>
 
