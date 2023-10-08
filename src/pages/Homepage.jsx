@@ -12,6 +12,11 @@ import Featured from '../assets/Featured.jpeg';
 import FutureShoe from '../assets/FutureShoe.jpg';
 import LouisV from '../assets/LouisV.png';
 
+import Featured from '../assets/Featured.jpeg';
+import Rolex from '../assets/Rolex.jpeg';
+import Balenciaga from '../assets/Balenciaga.webp';
+
+
 const featuredCollection = [
   {
     image: Featured,
@@ -29,7 +34,14 @@ const featuredCollection = [
     image: LouisV,
     name: 'Louis Vuitton - Bag',
   },
-  // Add more featured items as needed
+  {
+    image: Rolex,
+    name: 'Rolex - Watch',
+  },
+  {
+    image: Balenciaga,
+    name: 'Balenciaga - Shirt',
+  },
 ];
 
 const Home = () => {
@@ -105,18 +117,21 @@ const Home = () => {
 
       <div className="flex flex-col justify-center items-center space-x-4 py-8 px-8 w-full">
         <h1 className="text-2xl font-bold text-center text-black mb-8">Featured Collection</h1>
-        <div className="flex flex-wrap justify-center">
+        <div className="flex flex-wrap justify-center items-center">
           {featuredCollection.map((item, index) => (
-            <Card key={index} className="max-w-xs m-4">
-              <CardActionArea>
-                <CardMedia component="img" alt="NFT" height="200" image={item.image} />
-                <CardContent>
-                  <Typography gutterBottom variant="h5" component="div" className="font-bold">
-                    {item.name}
-                  </Typography>
-                </CardContent>
-              </CardActionArea>
-            </Card>
+        <Card key={index} className="flex flex-col max-w-xs m-4">
+          <CardActionArea className="flex flex-col flex-grow justify-center">
+            <CardMedia component="img" alt="NFT" className="flex-grow" image={item.image} />
+            
+          </CardActionArea>
+          <div className='py-5 text-center'>
+            <Typography gutterBottom variant="h5" component="div" className="font-bold">
+                {item.name}
+            </Typography>
+        </div>
+      </Card>
+
+
           ))}
         </div>
       </div>
