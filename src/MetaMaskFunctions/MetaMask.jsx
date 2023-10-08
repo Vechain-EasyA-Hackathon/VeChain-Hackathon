@@ -19,9 +19,6 @@ const Metamask = () => {
     localStorage.setItem('metamaskAddress', addrFormatted);
   }
 
-  import { useSDK } from '@metamask/sdk-react';
-
-
   useEffect(() => {
     if (provider) {
       window.ethereum.request({
