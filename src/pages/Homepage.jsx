@@ -33,11 +33,18 @@ function Home() {
         </div>
       </div>
 
+      <div className="flex justify-center space-x-4 py-4 px-8 w-full">
+        <Button variant="contained" onClick={Metamask}>Featured</Button>
+
+        <Button variant="contained" onClick={Metamask}>Explore</Button>
+
+        <Button variant="contained" onClick={Metamask}>Search</Button>
+      </div>
+
       
 
     
     
-      <Button variant="contained">Hello world</Button>
     
     </div>
 
