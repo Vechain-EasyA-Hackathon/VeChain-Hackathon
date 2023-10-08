@@ -1,4 +1,4 @@
-// SPDX-License-Identifier: UNLICENSED
+// // SPDX-License-Identifier: UNLICENSED
 pragma solidity ^0.8.13;
 
 import {Test, console2} from "forge-std/Test.sol";
@@ -35,9 +35,9 @@ contract Seller_ProductTest is Test {
     function test_AddProduct() public {
         test_AddSeller();
 
-        string[] memory manufacturerName = new string[](3);
-        manufacturerName[0] = "Nike";
-        manufacturerName[1] = "Grove";
+//         string[] memory manufacturerName = new string[](3);
+//         manufacturerName[0] = "Nike";
+//         manufacturerName[1] = "Grove";
 
         string[] memory sourceMaterials = new string[](3);
         manufacturerName[0] = "Leather, Rubber";
