@@ -74,9 +74,6 @@ const Home = () => {
 
         <div className="flex space-x-4 p-2">
           <Button variant="contained" className="text-white">
-            Featured
-          </Button>
-          <Button variant="contained" className="text-white">
             Explore
           </Button>
           <Button variant="contained" className="text-white">
