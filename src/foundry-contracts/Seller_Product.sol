@@ -82,4 +82,8 @@ contract Seller_Product {
     ) public view returns (Product memory) {
         return (products[_id][_sellerName]);
     }
+
+    function getProductCount() public view returns (uint256) {
+        return productCount;
+    }
 }
