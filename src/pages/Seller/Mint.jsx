@@ -1,15 +1,34 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import TextField from '@mui/material/TextField';
 import Button from '@mui/material/Button';
+import { addProduct } from '../../etherCalls/addProduct';
+import { ethers, utils } from 'ethers';
 
 const MintPage = () => {
   const parameters = ['Name', 'Product ID', 'Carbon Footprint', 'Quantity', 'Image', 'Data', 'Seller Name'];
   const navigate = useNavigate();
+  const [productData, setProductData] = useState({});
 
   const handleMint = () => {
-    // Handle minting logic
-    console.log('Minting NFT...');
+    // Replace these with the actual values you want to send
+    const id = 10;  // Example product ID
+    const name = "Product Name";
+    const prodString = "12";
+    // const productDataBytes = utils.parseEther(prodString.toString());
+    const manuString = "098";
+    // const manufacturerDataBytes = utils.parseEther(manuString.toString());;
+    const sellerName = "Seller Name";
+
+// Create an array with the provided variables
+const dataArray = [id, name, date, purchaseQuantity, Quantity, description, image, data, carbonFootprint, sellerName];
+
+// Define the types for each element in the array
+const types = ['uint256', 'string', 'string', 'uint256', 'uint256', 'string', 'string', 'string', 'uint256', 'uint256', 'string'];
+const productDataBytes = 
+    console.log("accepted");
+    // Call the addProduct function with the appropriate arguments
+    addProduct(id, name, productDataBytes, manufacturerDataBytes, sellerName);
   };
 
   const handleClick = () => {
@@ -36,6 +55,9 @@ const MintPage = () => {
             variant="outlined"
             margin="normal"
             className="mb-3"
+            onChange={(event) => {
+              setProductData({ ...productData, [param]: event.target.value });
+            }}
           />
         ))}
       </div>
