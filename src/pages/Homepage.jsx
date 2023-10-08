@@ -1,18 +1,21 @@
-import React, { useState, useEffect } from 'react';
+import { CardActionArea } from '@mui/material';
 import Button from '@mui/material/Button';
 import Card from '@mui/material/Card';
 import CardContent from '@mui/material/CardContent';
 import CardMedia from '@mui/material/CardMedia';
 import Typography from '@mui/material/Typography';
-import { CardActionArea } from '@mui/material';
-import { useNavigate } from 'react-router-dom';
 import { ethers } from 'ethers';
+import React, { useEffect, useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 import AIRJ from '../assets/AIRJ.jpeg';
+import Featured from '../assets/Featured.jpeg';
 import FutureShoe from '../assets/FutureShoe.jpg';
 import LouisV from '../assets/LouisV.png';
+
 import Featured from '../assets/Featured.jpeg';
 import Rolex from '../assets/Rolex.jpeg';
 import Balenciaga from '../assets/Balenciaga.webp';
+
 
 const featuredCollection = [
   {
@@ -42,14 +45,15 @@ const featuredCollection = [
 ];
 
 const Home = () => {
-  const [userAddress, setUserAddress] = useState(null);
+  let [userAddress, setUserAddress] = useState(null);
   const navigator = useNavigate();
 
   useEffect(() => {
     async function fetchData() {
       try {
-        const provider = new ethers.providers.Web3Provider(window.ethereum);
-        const signer = provider.getSigner();
+
+        const provider = new ethers.BrowserProvider(window.ethereum);
+        const signer = await provider.getSigner();
         const address = await signer.getAddress();
         setUserAddress(address);
       } catch (error) {
@@ -59,7 +63,7 @@ const Home = () => {
 
     fetchData();
   }, []);
-  const formattedAddress = userAddress ? `${userAddress.slice(0, 6)}...${userAddress.slice(-4)}` : '';
+  const formattedAddress = userAddress ? `${userAddress.slice(0, 6)}...${userAddress.slice(-4)}` : null;
 
   const handleDisconnect = async () => {
     try {
