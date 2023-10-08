@@ -26,7 +26,7 @@ function App() {
             <Route path="product/:company/:nftid" element={<Product />} />
 
             {/* Product Sample */}
-            <Route path="product/nike/82" element={<ProductSample />} />
+            <Route path="product/nike/81" element={<ProductSample />} />
 
           </Routes>
       </Router>
