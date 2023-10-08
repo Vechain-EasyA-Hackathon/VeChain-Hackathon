@@ -12,10 +12,7 @@ import TableHead from '@mui/material/TableHead';
 import TableFooter from '@mui/material/TableFooter';
 import Paper from '@mui/material/Paper';
 
-
-
 import J1 from '../assets/J1.jpeg';
-
 
 function ProductSample() {
     // Use the useParams hook to access URL parameters

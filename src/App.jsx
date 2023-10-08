@@ -8,8 +8,7 @@ import SellerDashboard from './pages/Seller/SellerDashboard';
 import Product from './pages/Product';
 import ProductSample from './pages/ProductSample';
 import MyCollection from './pages/Consumer/MyCollection';
-
-
+import CarbonOffset from './pages/Seller/CarbonOffset';
 
 function App() {
 
@@ -30,6 +29,7 @@ function App() {
             <Route path="product/nike/82" element={<ProductSample />} />
             <Route path="my-collection" element={<MyCollection />} />
 
+            <Route path="seller/carbon-offset" element={<CarbonOffset />} />
 
           </Routes>
       </Router>

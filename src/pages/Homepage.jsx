@@ -104,7 +104,7 @@ const Home = () => {
       </div>
 
       <div className="flex flex-col justify-center items-center space-x-4 py-8 px-8 w-full">
-        <h1 className="text-2xl font-bold text-center text-black mb-8">Featured Collection</h1>
+        <h1 className="text-3xl font-bold text-center text-black mb-8">Featured Collection</h1>
         <div className="flex flex-wrap justify-center">
           {featuredCollection.map((item, index) => (
             <Card key={index} className="max-w-xs m-4">

@@ -133,7 +133,7 @@ import TextField from '@mui/material/TextField';
 import { transferToClient } from '../../etherCalls/transferToClient';
 
 
-const columns = ['Product Name', 'Category', 'Amount'];
+const columns = ['Product Name', 'Category', 'Amount', 'Carbon Footprint'];
 
 function SellerDashboard() {
   const navigate = useNavigate();
@@ -181,9 +181,9 @@ function SellerDashboard() {
   };
 
   const sortedProducts = [
-    ['Nike Air Mag', 'Shoe', 100],
-    ['Air Jordan 1 - UNC', 'Shoe', 10000],
-    ['Louis Vuitton Backpack', 'Streetwear', 1000]
+    ['Nike Air Mag', 'Shoe', 150, 1232],
+    ['Air Jordan 1 - UNC', 'Shoe', 12000, 99921],
+    ['Louis Vuitton Backpack', 'Streetwear', 1000, 6788]
   ].sort((a, b) => {
     if (!sortConfig) return 0;
     const [key, direction] = [sortConfig.key, sortConfig.direction];
@@ -210,6 +210,10 @@ function SellerDashboard() {
   }
   const handleBack = () => {
     navigate("/");
+  }
+
+  const carbonOffset = () => {
+    navigate("seller/carbon-offset");
   }
 
   return (
@@ -275,6 +279,14 @@ function SellerDashboard() {
       </div>
         {/* Buttons aligned flexibly below the table */}
        <div style={{ display: 'flex', justifyContent: 'flex-end', padding: '16px' }}>
+       <Button
+          variant="contained"
+          color="primary"
+          onClick={carbonOffset}
+          style={{ marginRight: '16px' }} // Adjusted spacing
+        >
+          Offset Carbon Output
+        </Button>
         <Button
           variant="contained"
           color="primary"

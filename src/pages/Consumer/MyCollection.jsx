@@ -33,14 +33,17 @@ import { useNavigate } from 'react-router-dom';
     const back = () => {
         navigate("/");
     }
+    
     useEffect(() => {
       async function fetchData() {
         try {
-          const provider = new ethers.BrowserProvider(window.ethereum);
+          const provider = new ethers.Web3Provider(window.ethereum);
           const signer = provider.getSigner();
+          
+          // Retrieve the signer's address using Ethereum provider
           const address = await signer.getAddress();
           setUserAddress(address);
-  
+    
           // Fetch the user's NFTs
           const fetchedNFTs = await fetchUserNFTs(address);
           setNFTs(fetchedNFTs);
