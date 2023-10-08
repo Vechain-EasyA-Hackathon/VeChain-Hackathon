@@ -38,7 +38,7 @@ import { useNavigate } from 'react-router-dom';
         try {
           const provider = new ethers.BrowserProvider(window.ethereum);
           const signer = provider.getSigner();
-          const address = await signer.getAddress();
+          const address = signer.address;
           setUserAddress(address);
   
           // Fetch the user's NFTs

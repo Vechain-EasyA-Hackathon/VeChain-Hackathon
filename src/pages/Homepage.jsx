@@ -12,7 +12,6 @@ import Featured from '../assets/Featured.jpeg';
 import FutureShoe from '../assets/FutureShoe.jpg';
 import LouisV from '../assets/LouisV.png';
 
-import Featured from '../assets/Featured.jpeg';
 import Rolex from '../assets/Rolex.jpeg';
 import Balenciaga from '../assets/Balenciaga.webp';
 
@@ -54,7 +53,8 @@ const Home = () => {
 
         const provider = new ethers.BrowserProvider(window.ethereum);
         const signer = await provider.getSigner();
-        const address = await signer.getAddress();
+        console.log("signer", signer);
+        const address = signer.address;
         setUserAddress(address);
       } catch (error) {
         console.error('Error fetching address:', error);
