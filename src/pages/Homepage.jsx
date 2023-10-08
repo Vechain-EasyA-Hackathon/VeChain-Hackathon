@@ -39,6 +39,7 @@ const Home = () => {
   useEffect(() => {
     async function fetchData() {
       try {
+
         const provider = new ethers.BrowserProvider(window.ethereum);
         const signer = await provider.getSigner();
         const address = await signer.getAddress();
@@ -73,6 +74,9 @@ const Home = () => {
         </div>
 
         <div className="flex space-x-4 p-2">
+          <Button variant="contained" className="text-white">
+            Featured
+          </Button>
           <Button variant="contained" className="text-white">
             Explore
           </Button>
