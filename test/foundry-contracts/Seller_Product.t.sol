@@ -3,9 +3,10 @@ pragma solidity ^0.8.13;
 
 import {Test, console2} from "forge-std/Test.sol";
 import {Seller_Product} from "@contracts/Seller_Product.sol";
+import {NFT} from "@contracts/Product_NFT.sol";
 
 contract Seller_ProductTest is Test {
-    struct seller {
+    struct User {
         string name;
         address addr;
     }
@@ -13,7 +14,8 @@ contract Seller_ProductTest is Test {
     Seller_Product public seller_product;
 
     address public owner;
-    seller seller1 = seller("UMBC", makeAddr("UMBC"));
+    User client1 = User("Bob", makeAddr("Bob"));
+    User seller1 = User("UMBC", makeAddr("UMBC"));
 
     function setUp() public {
         seller_product = new Seller_Product();
@@ -32,7 +34,6 @@ contract Seller_ProductTest is Test {
 
     function test_AddProduct() public {
         test_AddSeller();
-        vm.prank(seller1.addr);
 
         string[] memory manufacturerName = new string[](3);
         manufacturerName[0] = "A";
@@ -53,26 +54,33 @@ contract Seller_ProductTest is Test {
         manufacturerData[0] = "great";
         manufacturerData[1] = "nice";
 
-        bytes memory productDecodeBytes = abi.encode(
-            1,
-            "DEEZ NUTS",
-            "2021-01-01",
-            10,
-            500,
-            "NEED I DESCRIBE THIS",
-            "LOL",
-            "SOME DATA",
-            seller1.name
-        );
+        Seller_Product.ProductData memory productData = Seller_Product
+            .ProductData(
+                1,
+                "DEEZ NUTS",
+                "2021-01-01",
+                10,
+                10,
+                "NEED I DESCRIBE THIS",
+                "LOL",
+                "SOME DATA",
+                10,
+                seller1.name
+            );
 
-        bytes memory manufacturerDataBytes = abi.encode(
-            manufacturerName,
-            sourceMaterials,
-            carbonFootprint,
-            sourceLocation,
-            manufacturerData
-        );
+        Seller_Product.ManufacturerData
+            memory manufacturerDataObj = Seller_Product.ManufacturerData(
+                manufacturerName,
+                sourceMaterials,
+                carbonFootprint,
+                sourceLocation,
+                manufacturerData
+            );
 
+        bytes memory productDecodeBytes = abi.encode(productData);
+        bytes memory manufacturerDataBytes = abi.encode(manufacturerDataObj);
+
+        vm.prank(seller1.addr);
         seller_product.addProduct(
             1,
             "DEEZ NUTS",
@@ -83,11 +91,30 @@ contract Seller_ProductTest is Test {
 
         assertEq(seller_product.productCount(), 1);
 
-        Seller_Product.Product memory prod = seller_product.getProductName(
-            0,
-            seller1.name
+        Seller_Product.Product memory prod = seller_product.getProduct(
+            seller1.name,
+            0
         );
 
         assertEq(prod.name, "DEEZ NUTS");
+    }
+
+    function test_NFT() public {
+        test_AddProduct();
+        vm.prank(seller1.addr);
+        NFT nftContract = NFT(seller_product.NFTs(seller1.addr, 1));
+        uint256 nftMinted = nftContract.TOTAL_SUPPLY();
+
+        assertEq(nftMinted, 10);
+
+        address original_owner = nftContract.ownerOf(0);
+
+        vm.prank(seller1.addr);
+        nftContract.transferToClient(client1.addr);
+
+        address new_owner = nftContract.ownerOf(0);
+
+        assertNotEq(original_owner, new_owner);
+        assertEq(original_owner, seller1.addr);
     }
 }
