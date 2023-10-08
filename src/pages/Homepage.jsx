@@ -33,15 +33,15 @@ const featuredCollection = [
 ];
 
 const Home = () => {
-  const [userAddress, setUserAddress] = useState(null);
+  let [userAddress, setUserAddress] = useState(null);
   const navigator = useNavigate();
 
   useEffect(() => {
     async function fetchData() {
       try {
         const provider = new ethers.BrowserProvider(window.ethereum);
-        const signer = provider.getSigner();
-        const address = (await signer).getAddress();
+        const signer = await provider.getSigner();
+        const address = await signer.getAddress();
         setUserAddress(address);
       } catch (error) {
         console.error('Error fetching address:', error);
@@ -50,7 +50,7 @@ const Home = () => {
 
     fetchData();
   }, []);
-  const formattedAddress = userAddress ? `${userAddress.slice(0, 6)}...${userAddress.slice(-4)}` : '';
+  const formattedAddress = userAddress ? `${userAddress.slice(0, 6)}...${userAddress.slice(-4)}` : null;
 
   const handleDisconnect = async () => {
     try {
