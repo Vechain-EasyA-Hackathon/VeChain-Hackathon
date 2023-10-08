@@ -39,9 +39,9 @@ const Home = () => {
   useEffect(() => {
     async function fetchData() {
       try {
-        const provider = new ethers.BrowserProvider(window.ethereum);
+        const provider = new ethers.providers.Web3Provider(window.ethereum);
         const signer = provider.getSigner();
-        const address = (await signer).getAddress();
+        const address = await signer.getAddress();
         setUserAddress(address);
       } catch (error) {
         console.error('Error fetching address:', error);
@@ -73,6 +73,9 @@ const Home = () => {
         </div>
 
         <div className="flex space-x-4 p-2">
+          <Button variant="contained" className="text-white">
+            Featured
+          </Button>
           <Button variant="contained" className="text-white">
             Explore
           </Button>
