@@ -27,6 +27,8 @@ function App() {
 
             {/* Product Sample */}
             <Route path="product/nike/82" element={<ProductSample />} />
+            <Route path="my-collection" element={<MyCollection />} />
+
 
           </Routes>
       </Router>

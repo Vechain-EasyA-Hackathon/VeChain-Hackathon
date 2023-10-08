@@ -130,6 +130,8 @@ import Checkbox from '@mui/material/Checkbox';
 import { useNavigate } from 'react-router-dom';
 import Modal from '@mui/material/Modal';
 import TextField from '@mui/material/TextField';
+import { transferToClient } from '../../etherCalls/transferToClient';
+
 
 const columns = ['Product Name', 'Category', 'Amount'];
 
@@ -148,8 +150,9 @@ function SellerDashboard() {
     setIsModalOpen(false);
   };
 
-  const handleDistribute = () => {
-    console.log('Distributing selected products:', selectedRows);
+  const handleDistribute = (addresses) => {
+    addresses = addresses.split(',');
+    addresses.forEach(address => {transferToClient(address, 1)});
     // Add your logic to distribute selected products
     handleCloseModal();
   };
@@ -248,7 +251,7 @@ function SellerDashboard() {
             <TableBody>
               {sortedProducts.map((product, index) => (
                 <TableRow key={index}>
-                  <TableCell align="center" padding="0px">
+                  <TableCell align="center" padding="none">
                     <Checkbox
                       checked={isRowSelected(index)}
                       onChange={() => handleToggle(index)}
@@ -343,7 +346,7 @@ function SellerDashboard() {
             value={addresses}
             onChange={e => setAddresses(e.target.value)}
           />
-          <Button variant="contained" color="primary" onClick={handleDistribute}>
+          <Button variant="contained" color="primary" onClick={() => handleDistribute(addresses)}>
             Distribute
           </Button>
         </Box>

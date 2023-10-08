@@ -6,56 +6,81 @@ import { addProduct } from '../../etherCalls/addProduct';
 import { ethers, utils } from 'ethers';
 
 const MintPage = () => {
-  const parameters = ['Name', 'Product ID', 'Date', 'Description', 'Image', 'Carbon Footprint', 'Quantity', 'Image', 'Seller Name',
-  'Manufacturer Name', 'Manufacturer ID', 'Manufacturer Location', 'Manufacturer Description', 'Manufacturer Image'
+  const parameters = [
+    'Product ID',
+    'Name',
+    'Date',
+    'Description',
+    'Image',
+    'Carbon Footprint',
+    'Quantity',
+    'Data',
+    'Seller Name',
+    'Manufacturer Footprint',
+    'Source Materials',
+    'Source Location',
+    'Manufacturer Description'
   ];
   const navigate = useNavigate();
   const [productData, setProductData] = useState({});
-  
 
-  const handleMint = () => {
-    // Replace these with the actual values you want to send
-    const id = 10;
-    const date = "2021-10-10";
-    const purchaseQuantity = 0;
-    const Quantity = 11;
-    const description = "Product Description";
-    const image = "Product Image";
-    const data = "Product Data";
-    const carbonFootprint = 0;
-    // Example product ID
-    const name = "Product Name";
-    const prodString = "12";
-    // const productDataBytes = utils.parseEther(prodString.toString());
-    const manuString = "098";
-    // const manufacturerDataBytes = utils.parseEther(manuString.toString());;
-    const sellerName = "Seller Name";
+  const handleInputChange = (param, value) => {
+    setProductData({ ...productData, [param]: value });
+  };
 
-// Create an array with the provided variables
-const dataArray = [id, name, date, purchaseQuantity, Quantity, description, image, data, carbonFootprint, sellerName];
+    const handleMint = () => {
+      
+      const dataArray = [
+        productData['Product ID'],
+        productData['Name'],
+        productData['Date'],
+        productData['Quantity'],
+        productData['Quantity'],
+        productData['Description'],
+        productData['Image'],
+        productData['Data'],
+        productData['Manufacturer Footprint'],
+        productData['Seller Name']
+      ];
+      console.log(dataArray);
+      const types = [
+        'uint256',
+        'string',
+        'string',
+        'uint256',
+        'uint256',
+        'string',
+        'string',
+        'string',
+        'uint256',
+        'string'
+      ];
+      console.log(typeof(types[1]));
+      const encodedArray = ethers.utils.defaultAbiCoder.encode(types, dataArray);
+      //console.log(ethers.utils.defaultAbiCoder.decode(encodedArray));
+      const manData = [
+        productData['Seller Name'],
+        productData['Source Materials'],
+        productData['Manufacturer Footprint'],
+        productData['Source Location'],
+        productData['Manufacturer Description']];
 
-// Define the types for each element in the array
-const types = ['uint256', 'string', 'string', 'uint256', 'uint256', 'string', 'string', 'string', 'uint256', 'string'];
-const encodedArray = ethers.utils.defaultAbiCoder.encode(types, dataArray);
-const manData = [["Joe", "Joe"],
-  ["Poop", "Poop"],
-  [1, 10],
-  ["Canada", "Canada"],
-  ["stuff", "stuff"],
-  ];
-console.log(typeof(["",""]));
-const typesManData = 
-  ['string[]',
-  'string[]',
-  'uint256[]',
-  'string[]',
-  'string[]'];
-
-    console.log("accepted");
-    const manEncode = ethers.utils.defaultAbiCoder.encode(typesManData, manData);
-    console.log(manEncode);
-    // Call the addProduct function with the appropriate arguments
-    addProduct(id, name, encodedArray, manEncode, sellerName);
+      const typesManData = [
+        'string',
+        'string',
+        'uint256',
+        'string',
+        'string',
+      ];
+      const manEncode = ethers.utils.defaultAbiCoder.encode(typesManData, manData);
+    
+      addProduct(
+        dataArray[0], // Product ID
+        dataArray[1], // Name
+        encodedArray,
+        manEncode,
+        dataArray[9] // Seller Name
+      );
   };
 
   const handleClick = () => {
@@ -82,19 +107,13 @@ const typesManData =
             variant="outlined"
             margin="normal"
             className="mb-3"
-            onChange={(event) => {
-              setProductData({ ...productData, [param]: event.target.value });
-            }}
+            onChange={(event) => handleInputChange(param, event.target.value)}
           />
         ))}
       </div>
 
       <div className="flex justify-center mt-3">
-        <Button
-          variant="contained"
-          color="primary"
-          onClick={handleMint}
-        >
+        <Button variant="contained" color="primary" onClick={handleMint}>
           Mint
         </Button>
       </div>

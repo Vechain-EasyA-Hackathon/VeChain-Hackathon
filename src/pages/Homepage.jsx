@@ -57,7 +57,7 @@ function Home() {
       {/* Header */}
       <div className="flex justify-between items-center py-4 px-8 bg-emerald-500">
         <div className="flex items-center">
-          <h1 className="text-2xl font-bold ml-2 text-white">Green Clothing Company</h1>
+          <h1 className="text-2xl font-bold ml-2 text-white">SustainaLink</h1>
         </div>
         <div className="flex items-center">
           {userAddress ? (
@@ -85,6 +85,8 @@ function Home() {
         <Button variant="contained">Explore</Button>
 
         <Button variant="contained">Search</Button>
+        <Button variant="contained">My Collection</Button>
+
       </div>
 
       <div className="flex flex-col justify-center items-center space-x-4 py-4 px-8 w-full">
