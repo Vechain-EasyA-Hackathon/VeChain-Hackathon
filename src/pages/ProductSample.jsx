@@ -30,16 +30,14 @@ function ProductSample() {
 
     const products = [
       {
-        productID: "001",
-        name: "Product Name",
+        productID: "023",
         carbonFootprint: "20g",
-        quantity: "10",
-        data: "Sample Data",
-        sellerName: "John Doe",
+        quantity: "23",
+        Owner: "John Doe",
         manufacturerFootprint: "25g",
-        sourceMaterials: "Material A",
-        sourceLocation: "Location A",
-        manufacturerDescription: "Manufacturer A"
+        sourceMaterials: "Synthetic leather, mesh, rubber, foam.",
+        sourceLocation: "Sourced from Indonesia, Vietnam, and China - manufactured in Thailand.",
+        manufacturerDescription: "These shoes go through a precise multi-step process, from precision-cutting high-quality materials to rigorous quality checks, ensuring durability, comfort, and peak performance."
       },
     ];
 
@@ -48,11 +46,9 @@ function ProductSample() {
 
     const tableHeaders = [
       'Product ID',
-      'Name',
       'Carbon Footprint',
       'Quantity',
-      'Data',
-      'Seller Name',
+      'Owner',
       'Manufacturer Footprint',
       'Source Materials',
       'Source Location',
