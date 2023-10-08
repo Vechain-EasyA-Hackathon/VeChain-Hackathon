@@ -10,7 +10,7 @@ const Metamask = () => {
   const [provider, setProvider] = useState(null);
 
   const connectToMetamask = async () => {
-    const prov = new ethers.providers.Web3Provider(window.ethereum);
+    const prov = new ethers.BrowserProvider(window.ethereum);
     setProvider(prov);
     const accounts = await prov.send("eth_requestAccounts", []);
     const addrFormatted = shortenAddress(accounts[0]);
